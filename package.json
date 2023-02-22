@@ -1,0 +1,7 @@
+{
+  "name": "solid-clean-architecture-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "hugomos <vitor_osantos@hotmail.com>",
+  "license": "MIT"
+}
