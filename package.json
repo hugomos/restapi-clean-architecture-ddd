@@ -5,7 +5,7 @@
   "author": "hugomos <vitor_osantos@hotmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "tsnd --transpile-only --respawn --ignore-watch node_modules src/server.ts"
+    "start": "tsnd --transpile-only --respawn --ignore-watch node_modules src/main/server/server.ts"
   },
   "devDependencies": {
     "@types/express": "^4.17.17",
