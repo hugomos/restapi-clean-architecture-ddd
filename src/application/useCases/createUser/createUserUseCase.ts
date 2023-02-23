@@ -1,3 +1,4 @@
+import { User } from '../../../domain/entities/user'
 import { IInputFactory } from '../../../domain/inputFactory'
 import { ICreateUserDTO } from '../../../domain/useCases/createUser/createUserDTO'
 import { ICreateUserUseCase } from '../../../domain/useCases/createUser/createUserUseCase'
@@ -7,13 +8,20 @@ export class CreateUserUseCase extends ICreateUserUseCase {
     super(inputFactory)
   }
 
-  async execute(data: ICreateUserDTO): Promise<void> {
-    const userAlreadyExists = this.userRepository.getUserByEmail(data.email)
+  async execute(data: ICreateUserDTO): Promise<any> {
+    const user = new User(data)
+    const userAlreadyExists = await this.userRepository.getUserByEmail(user.email)
 
     if (!userAlreadyExists) {
-      await this.userRepository.save(data)
+      await this.userRepository.save(user)
+      return {
+        message: 'User created successfully',
+        user
+      }
     }
 
-    throw new Error('User already exists')
+    return {
+      message: 'User already exists'
+    }
   }
 }
